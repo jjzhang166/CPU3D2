@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CPU3D">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="CPU3D\Frame">
+      <UniqueIdentifier>{f056e205-da25-4d60-910e-a84e6bb2a131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CPU3D\例子">
+      <UniqueIdentifier>{467b18d9-bc89-4d8a-9120-7e28e01ebc5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{214aff0a-f507-4bd7-be75-831aa7163e6e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cpu3d\c3d.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dApp.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dCameara.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dLog.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dRender.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dShapes.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dTexture.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dVertex.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\IRender.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dExFrame.h">
+      <Filter>CPU3D\例子</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dWin32Frame.h">
+      <Filter>CPU3D\Frame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cpu3d\c3dApp.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dCameara.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dRender.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dTexture.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dExFrame.cpp">
+      <Filter>CPU3D\例子</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dWin32Frame.cpp">
+      <Filter>CPU3D\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="glmTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,25 +1,25 @@
 #include "c3dTexture.h"
 
-void c3dTexture::Init(int w,int h)
+void c3dTexture::Init(int w, int h)
 {
-	if ( w <= 0 || h <= 0)
+	if (w <= 0 || h <= 0)
 	{
 		return;
 	}
 	texw = w;
 	texh = h;
 	data = new unsigned char[w * h * 4];
-	memset(data,0,w*h*4 * sizeof(unsigned char));
+	memset(data, 0, w*h * 4 * sizeof(unsigned char));
 }
 //暂时颜色为白色，后面会补充
-void c3dTexture::DrawLine(vec2& p1,vec2& p2)
+void c3dTexture::DrawLine(vec2& p1, vec2& p2)
 {
 	//从bug判断这里是 画线的方式沿着 x坐标来画，当y值变化比较大的时候
 	//导致画线不连续，所以这里从根据X递增或者根据y递增是要判断的
-	vec2 k = p2 - p1;		
+	vec2 k = p2 - p1;
 	vec2 kAbs = glm::abs(k);
 	bool bLoopedByY = false;
-	kAbs.y > kAbs.x ? bLoopedByY = true : bLoopedByY =  false;
+	kAbs.y > kAbs.x ? bLoopedByY = true : bLoopedByY = false;
 	//判断两点坐标是否和法，其实这里 暂时没想到更好的解决办法，
 	//因为裁剪 应该是视锥裁剪
 	/*if (p1.x >= texw || p2.x >= texw || p1.y >= texh || p2.y >= texh)
@@ -40,17 +40,17 @@ void c3dTexture::DrawLine(vec2& p1,vec2& p2)
 
 
 	//这里应该根据 是否沿着Y坐标画线来决定 而且要从做往右
-	vec2 srcPoint,dstPoint;
+	vec2 srcPoint, dstPoint;
 	float stepX = 0;
 	float stepY = 0;
 	if (bLoopedByY)
 	{
-		if( p1.y < p2.y )
+		if (p1.y < p2.y)
 		{
 			srcPoint = p1;
 			dstPoint = p2;
 		}
-		else{
+		else {
 			srcPoint = p2;
 			dstPoint = p1;
 		}
@@ -61,25 +61,26 @@ void c3dTexture::DrawLine(vec2& p1,vec2& p2)
 			stepX += step;
 			stepY = y;
 			int spos = GetPos(stepX, stepY) * 4;
-			if (spos > 0 && spos < texw * texh * 4 -3)
+			if (spos > 0 && spos < texw * texh * 4 - 3)
 			{
-				if (spos < texw * texh * 4 -3)
+				if (spos < texw * texh * 4 - 3)
 				{
-					data[ spos ] = 0xFF;
-					data[ spos + 1 ] = 0x00;	//g
-					data[ spos + 2 ] = 0x00;	//b
-					data[ spos + 3 ] = 0xFF;	//a
+					data[spos] = 0xFF;
+					data[spos + 1] = 0x00;	//g
+					data[spos + 2] = 0x00;	//b
+					data[spos + 3] = 0xFF;	//a
 				}
 			}
 		}
-	}else{
+	}
+	else {
 		//这里是沿着x坐标画线
-		if( p1.x < p2.x )
+		if (p1.x < p2.x)
 		{
 			srcPoint = p1;
 			dstPoint = p2;
 		}
-		else{
+		else {
 			srcPoint = p2;
 			dstPoint = p1;
 		}
@@ -90,19 +91,19 @@ void c3dTexture::DrawLine(vec2& p1,vec2& p2)
 			stepY += step;
 			stepX = x;
 			int spos = GetPos(stepX, stepY) * 4;
-			if (spos > 0 && spos < texw * texh * 4 -3)
+			if (spos > 0 && spos < texw * texh * 4 - 3)
 			{
-				data[ spos ] = 0xFF;
-				data[ spos + 1 ] = 0xFF;	//g
-				data[ spos + 2 ] = 0xFF;	//b
-				data[ spos + 3 ] = 0xFF;	//a
+				data[spos] = 0xFF;
+				data[spos + 1] = 0xFF;	//g
+				data[spos + 2] = 0xFF;	//b
+				data[spos + 3] = 0xFF;	//a
 			}
 		}
 
 	}
 }
 
-void c3dTexture::DrawTriangle(vec2& p1,vec2&p2,vec2& p3)
+void c3dTexture::DrawTriangle(vec2& p1, vec2&p2, vec2& p3)
 {
 	//smoothstep(p1,p2,p3);
 	//目前按照点线的方式吧
@@ -120,7 +121,7 @@ vec2 c3dTexture::GetPos(int p)
 {
 	int y = p / texw;
 	int x = p % texw;
-	return vec2(x,y);
+	return vec2(x, y);
 }
 
 int c3dTexture::GetPos(vec2 pos)
@@ -133,7 +134,7 @@ int c3dTexture::GetPos(vec2 pos)
 	return m;
 }
 
-int c3dTexture::GetPos(int x,int y)
+int c3dTexture::GetPos(int x, int y)
 {
 	if (x < 0 || y < 0)
 	{
@@ -149,10 +150,10 @@ int c3dTexture::GetPos(int x,int y)
 	return m;
 }
 
-void c3dTexture::DrawDebug(vec2& p1,vec2&p2)
+void c3dTexture::DrawDebug(vec2& p1, vec2&p2)
 {
 #ifdef _DEBUG
-	for (int i = 0; i < texw * texh*4; ++i)
+	for (int i = 0; i < texw * texh * 4; ++i)
 	{
 		//data[i] = i % 255 ;
 	}
@@ -161,7 +162,58 @@ void c3dTexture::DrawDebug(vec2& p1,vec2&p2)
 
 }
 
+void c3dTexture::DrawTriangleFill(vec2& p1, vec2&p2, vec2& p3)
+{
+	//这里使用aabb的方式,确定矩形的大小，然后画三角形
+	//制定一根垂直的光线投射
+	//glm::intersectRayTriangle();
+	float left = p1.x < p2.x ? p1.x : p2.x;
+	left = left < p3.x ? left : p3.x;
+
+	float top = p1.y < p2.y ? p1.y : p2.y;
+	top = top < p3.y ? top : p3.y;
+
+	float right = p1.x > p2.x ? p1.x : p2.x;
+	right = right > p3.x ? right : p3.x;
+
+	float bottom = p1.y > p2.y ? p1.y : p2.y;
+	bottom = bottom > p3.y ? bottom : p3.y;
+
+	auto IsInTriangle = [&](float x, float y) ->bool
+	{
+		glm::vec2 q(x, y);
+		glm::vec2 p1q = q - p1;
+		glm::vec2 p1p2 = p2 - p1;
+		glm::vec2 p1p3 = p3 - p1;
+
+		auto cr1 = glm::dot(p1q, p1p2);
+		auto cr2 = glm::dot(p1p2, p1p3);
+		if (glm::dot(cr1, cr2) > 0)
+		{
+			return true;
+		}
+		return false;
+	};
+	auto spos = 0;
+	for (int y = top; y < bottom; ++y)
+	{
+		for (int x = left; x < right; ++x)
+		{
+			if (!IsInTriangle(x, y))
+			{
+				spos = (x + y * texw)*4;
+				data[spos] = 0xFF;
+				data[spos+1] = 0xFF;	//g
+				data[spos+2] = 0xFF;	//b
+				data[spos+3] = 0xFF;	//a
+			}
+			
+		}
+	}
+
+}
+
 void c3dTexture::Clear()
 {
-	memset(data,0,4 * texw * texh * sizeof(unsigned char));
+	memset(data, 0, 4 * texw * texh * sizeof(unsigned char));
 }

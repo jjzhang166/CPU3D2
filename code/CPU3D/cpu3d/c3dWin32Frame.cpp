@@ -109,7 +109,11 @@ void c3dWin32Frame::update()
 
 void c3dWin32Frame::draw()
 {
-	tex.DrawLine(vec2(20,20),vec2(200,200));
+	//tex.DrawLine(vec2(20,20),vec2(200,200));
+	glm::vec2 p1(200,210);
+	glm::vec2 p2(400,121);
+	glm::vec2 p3(300,400);
+	tex.DrawTriangleFill(p1, p2, p3);
 	unsigned char * data = tex.GetData();
 	int size = tex.GetSize();
 	memcpy(screen_fb,data, size * 4 * sizeof(unsigned char));

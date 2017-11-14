@@ -1,7 +1,7 @@
 #pragma once
 //这里是否使用一个绘图机制
 #include "c3d.h"
-#include "c3dCameara.h"
+#include "c3dCamera.h"
 #include "c3dTexture.h"
 #include "c3dShapes.h"
 class c3dExFrame
@@ -35,7 +35,7 @@ private:
 	
 	void apply(vec4& y,vec4& x,mat4x4& m);
 private:
-	c3dCameara cam;	//相机
+	c3dCamera cam;	//相机
 	vec2 screen;
 	mat4x4	mview;	//模型矩阵
 	mat4x4  mworld;	//世界矩阵

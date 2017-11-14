@@ -1,16 +1,48 @@
 #include "c3dTexture.h"
 
-void c3dTexture::Init(int w, int h)
+bool c3dTexture::Allocate(int width, int height, const c3dColor& color)
 {
-	if (w <= 0 || h <= 0)
+	if (width <= 0 || height <= 0)
 	{
-		return;
+		c3dLog::WriteErrorLog(InvalidSize);
+		return false;
 	}
-	texw = w;
-	texh = h;
-	data = new unsigned char[w * h * 4];
-	memset(data, 0, w*h * 4 * sizeof(unsigned char));
+	if (bInit)
+	{
+		texw = width;
+		texh = height;
+		data = new unsigned char[width * height * 4];
+		for (int nIndex = 0; nIndex < width * height; nIndex++)
+		{
+			data[nIndex] = color.r;
+			data[nIndex + 1] = color.g;
+			data[nIndex + 2] = color.b;
+			data[nIndex + 3] = color.a;
+		}
+		bInit = true;
+	}
+	else {
+		c3dLog::WriteErrorLog(InvalidInit);
+		return false;
+	}
+	return true;
 }
+
+bool c3dTexture::LoadFromImage(c3dString fileName)
+{
+	c3dLog::WriteLog(c3dLog::Warn, "未实现此方法");
+	return false;
+}
+
+void c3dTexture::Release()
+{
+	if (bInit)
+	{
+		delete data;
+		data = nullptr;
+	}
+}
+
 //暂时颜色为白色，后面会补充
 void c3dTexture::DrawLine(vec2& p1, vec2& p2)
 {
@@ -192,6 +224,7 @@ void c3dTexture::DrawTriangleFill(vec2& p1, vec2&p2, vec2& p3)
 		{
 			return true;
 		}
+
 		return false;
 	};
 	auto spos = 0;
@@ -201,19 +234,90 @@ void c3dTexture::DrawTriangleFill(vec2& p1, vec2&p2, vec2& p3)
 		{
 			if (!IsInTriangle(x, y))
 			{
-				spos = (x + y * texw)*4;
+				spos = (x + y * texw) * 4;
 				data[spos] = 0xFF;
-				data[spos+1] = 0xFF;	//g
-				data[spos+2] = 0xFF;	//b
-				data[spos+3] = 0xFF;	//a
+				data[spos + 1] = 0xFF;	//g
+				data[spos + 2] = 0xFF;	//b
+				data[spos + 3] = 0xFF;	//a
 			}
-			
 		}
 	}
+}
 
+void c3dTexture::DrawScanLine(vec2& p1, int w)
+{
+	if (w < 0) return;
+	int beginX = max(0, p1.x);
+	int endX = max(0, p1.x + w);
+	if (beginX < 0 || endX <= 0) return;
+
+	for (int cx = beginX; cx < endX; cx++)
+	{
+		int nPos = GetPos(cx, p1.y);
+		data[nPos] = 255;
+		data[nPos + 1] = 255;
+		data[nPos + 2] = 255;
+		data[nPos + 3] = 255;
+	}
 }
 
 void c3dTexture::Clear()
 {
 	memset(data, 0, 4 * texw * texh * sizeof(unsigned char));
 }
+
+void c3dTextureManager::Switch(int nTexIndex)
+{
+	std::map<int, c3dTexture*>::iterator res = data.find(nTexIndex);
+	if (res != data.end())
+	{
+		nCurrentIndex = nTexIndex;
+	}
+	else {
+		c3dLog::WriteLog(c3dLog::Warn, "未找到当前纹理索引。");
+	}
+}
+
+bool c3dTextureManager::Add(int nTexIndex, c3dTexture& tex)
+{
+	data[nTexIndex] = &tex;
+	return true;
+}
+
+bool c3dTextureManager::Remove(int nTexIndex)
+{
+	std::map<int, c3dTexture*>::iterator res = data.find(nTexIndex);
+	if (res != data.end())
+	{
+		data.erase(nTexIndex);
+		return true;
+	}
+	else {
+		c3dLog::WriteLog(c3dLog::Warn, "未找到当前纹理索引。");
+	}
+	return false;
+}
+
+c3dTexture* c3dTextureManager::GetCurrentTexture()
+{
+	c3dTexture* pLocalTex = nullptr;
+	std::map<int, c3dTexture*>::iterator res = data.find(nCurrentIndex);
+	if (res != data.end())
+	{
+		pLocalTex = data[nCurrentIndex];
+	}
+	else {
+		c3dLog::WriteLog(c3dLog::Warn, "未找到当前纹理索引。");
+	}
+	return pLocalTex;
+}
+
+c3dTextureManager::c3dTextureManager(const c3dDevice* pDev):nCurrentIndex(0) 
+{
+	if (pDev == nullptr)
+	{
+		c3dLog::WriteErrorLog(Nullptr);
+	}
+	pDevice = pDev;
+}
+

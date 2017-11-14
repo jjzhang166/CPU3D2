@@ -41,7 +41,7 @@ int c3dExFrame::c3dInit()
 {
 	screenw = 1200;
 	screenh = 800;
-	tex.Init(screenw, screenh);
+	tex.Allocate(screenw, screenh);
 	TCHAR title[] = _T("c3d frame");
 	cam.ration = screenw / screenh;
 

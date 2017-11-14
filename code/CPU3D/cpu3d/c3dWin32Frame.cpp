@@ -52,7 +52,7 @@ int c3dWin32Frame::setup()
 	pThis = this;
 	screenw = 1200;
 	screenh = 800;
-	tex.Init(screenw, screenh);
+	tex.Allocate(screenw, screenh);
 	TCHAR title[] = _T("CPU3d Win32 Frame Application");
 	WNDCLASS wc = { CS_BYTEALIGNCLIENT, (WNDPROC)screen_events, 0, 0, 0, 
 		NULL, NULL, NULL, NULL, _T("SCREEN3.1415926") };

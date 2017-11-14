@@ -47,7 +47,7 @@ int c3dApp::setup()
 {
 	screenw = 1200;
 	screenh = 800;
-	tex.Init(screenw, screenh);
+	tex.Allocate(screenw, screenh);
 	TCHAR title[] = _T("c3d app");
 
 	WNDCLASS wc = { CS_BYTEALIGNCLIENT, (WNDPROC)screen_events, 0, 0, 0, 
@@ -94,6 +94,7 @@ int c3dApp::setup()
 	UpdateWindow(hwnd);
 
 	memset(screen_fb, 0,screenw * screenh * 4);
+	return 0;
 }
 
 void c3dApp::update()

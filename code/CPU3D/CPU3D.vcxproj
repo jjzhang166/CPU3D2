@@ -152,22 +152,28 @@
   <ItemGroup>
     <ClInclude Include="cpu3d\c3d.h" />
     <ClInclude Include="cpu3d\c3dApp.h" />
-    <ClInclude Include="cpu3d\c3dCameara.h" />
+    <ClInclude Include="cpu3d\c3dDevice.h" />
+    <ClInclude Include="cpu3d\c3dFrameBuffer.h" />
+    <ClInclude Include="cpu3d\c3dCamera.h" />
     <ClInclude Include="cpu3d\c3dExFrame.h" />
     <ClInclude Include="cpu3d\c3dLog.h" />
+    <ClInclude Include="cpu3d\c3dPainter.h" />
     <ClInclude Include="cpu3d\c3dRender.h" />
     <ClInclude Include="cpu3d\c3dShapes.h" />
     <ClInclude Include="cpu3d\c3dTexture.h" />
     <ClInclude Include="cpu3d\c3dVertex.h" />
     <ClInclude Include="cpu3d\c3dWin32Frame.h" />
-    <ClInclude Include="cpu3d\IRender.h" />
+    <ClInclude Include="cpu3d\IPainter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cpu3d\c3dApp.cpp" />
-    <ClCompile Include="cpu3d\c3dCameara.cpp" />
+    <ClCompile Include="cpu3d\c3dCamera.cpp" />
+    <ClCompile Include="cpu3d\c3dDevice.cpp" />
     <ClCompile Include="cpu3d\c3dExFrame.cpp" />
+    <ClCompile Include="cpu3d\c3dPainter.cpp" />
     <ClCompile Include="cpu3d\c3dRender.cpp" />
     <ClCompile Include="cpu3d\c3dTexture.cpp" />
+    <ClCompile Include="cpu3d\c3dVertex.cpp" />
     <ClCompile Include="cpu3d\c3dWin32Frame.cpp" />
     <ClCompile Include="glmTest.cpp" />
   </ItemGroup>

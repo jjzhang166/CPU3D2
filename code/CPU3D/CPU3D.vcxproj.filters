@@ -30,13 +30,7 @@
     <ClInclude Include="cpu3d\c3dApp.h">
       <Filter>CPU3D</Filter>
     </ClInclude>
-    <ClInclude Include="cpu3d\c3dCameara.h">
-      <Filter>CPU3D</Filter>
-    </ClInclude>
     <ClInclude Include="cpu3d\c3dLog.h">
-      <Filter>CPU3D</Filter>
-    </ClInclude>
-    <ClInclude Include="cpu3d\c3dRender.h">
       <Filter>CPU3D</Filter>
     </ClInclude>
     <ClInclude Include="cpu3d\c3dShapes.h">
@@ -48,24 +42,33 @@
     <ClInclude Include="cpu3d\c3dVertex.h">
       <Filter>CPU3D</Filter>
     </ClInclude>
-    <ClInclude Include="cpu3d\IRender.h">
-      <Filter>CPU3D</Filter>
-    </ClInclude>
     <ClInclude Include="cpu3d\c3dExFrame.h">
       <Filter>CPU3D\例子</Filter>
     </ClInclude>
     <ClInclude Include="cpu3d\c3dWin32Frame.h">
       <Filter>CPU3D\Frame</Filter>
     </ClInclude>
+    <ClInclude Include="cpu3d\c3dCamera.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dFrameBuffer.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\IPainter.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dPainter.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dRender.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu3d\c3dDevice.h">
+      <Filter>CPU3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cpu3d\c3dApp.cpp">
-      <Filter>CPU3D</Filter>
-    </ClCompile>
-    <ClCompile Include="cpu3d\c3dCameara.cpp">
-      <Filter>CPU3D</Filter>
-    </ClCompile>
-    <ClCompile Include="cpu3d\c3dRender.cpp">
       <Filter>CPU3D</Filter>
     </ClCompile>
     <ClCompile Include="cpu3d\c3dTexture.cpp">
@@ -79,6 +82,21 @@
     </ClCompile>
     <ClCompile Include="glmTest.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dVertex.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dCamera.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dPainter.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dDevice.cpp">
+      <Filter>CPU3D</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu3d\c3dRender.cpp">
+      <Filter>CPU3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

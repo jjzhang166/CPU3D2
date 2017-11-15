@@ -10,6 +10,7 @@ public:
 	}
 	c3dRender* GetRender();
 	c3dTextureManager* GetTextureMgr();
+	c3dFrameBuffer* GetRenderFrameBuffer() { return frameBuffer[0]; }
 private:
 	c3dDevice(int width, int height);
 	~c3dDevice();

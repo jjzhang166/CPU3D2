@@ -4,6 +4,7 @@ enum c3dErrorType
 	Nullptr,
 	InvalidSize,
 	OutOfIndex,
+	InvalidIndex,
 	OutOfRange,
 	InvalidInit
 };
@@ -60,6 +61,9 @@ public:
 			break;
 		case c3dErrorType::InvalidInit:
 			WriteLog(c3dLogLevel::Error, "该设备重复初始化。");
+			break;
+		case c3dErrorType::InvalidIndex:
+			WriteLog(c3dLogLevel::Error, "非法的索引。");
 			break;
 		}
 	}

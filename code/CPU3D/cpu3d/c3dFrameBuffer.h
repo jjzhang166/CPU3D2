@@ -51,7 +51,8 @@ public:
 
 		}
 	}
-
+	unsigned char* GetFrameBuffer() { return frameBuffer; }
+	unsigned char* GetZBuffer() { return zBuffer; }
 	long GetSize() const { return size; }
 private:
 	unsigned char* frameBuffer;	//rgba
